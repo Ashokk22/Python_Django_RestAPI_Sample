@@ -1,0 +1,40 @@
+{% include "_header.html" with title="Person" parent_link="home" %}
+
+<div class="row">
+  <div class="col-l-12">
+    <h3>
+      {{ primary_name }}
+    </h3>
+    <p>
+      Born in {{ birth_year}}
+      {% if death_year %}
+      <br/>
+      Died in {{ death_year}}
+      {% endif %}
+    </p>
+    <div>
+      <h4>Primary Professions</h4>
+    </div>
+    <p>
+      <ul>
+      {% for p in primary_professions %}
+        <li>
+          {{p.title}}
+        </li>
+      {% endfor %}
+      </ul>
+    </p>
+    <div>
+      <h4>Known Titles</h4>
+    </div>
+    <p>
+      <ul>
+      {% for t in known_titles %}
+        <li>
+          <a href="/movies/title/{{t.id}}">{{t.original_name}}</a>
+        </li>
+      {% endfor %}
+      </ul>
+    </p>
+  </div>
+</div>

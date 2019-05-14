@@ -1,0 +1,47 @@
+{% include "_header.html" with title="Search people from IMDB" parent_link="search" %}
+
+<div class="row">
+  <div class="col-l-12">
+
+    <input class="form-control" type="text" id="searchTextbox" placeholder="Search" aria-label="Search" value="Fred">
+
+    <button id="searchButton" type="button" class="btn btn-primary">Search</button>
+
+    <br/>
+    <br/>
+      <div id="result">
+        <ul>
+
+        </ul>
+      </div>
+  </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+var d;
+  $(document).ready(function() {
+
+    $("#searchButton").click(function(){
+      var q = $("#searchTextbox").val();
+      $.ajax({
+              type: "GET",
+              url: "/apis/person/lookup/" + q + "/"
+      }).done(function( data ) {
+      d = data;
+      if (data.length > 0) {
+      $('#result').html('<ul></ul>');
+        $.each(data, function( index, person ) {
+          $('#result>ul').append('<li><a href="/movies/person/' + person.id + '"><span class="tab">' + person.primary_name + '</span></a></li>');
+        });
+      } else {
+        $('#result').html("No results found!");
+      }
+      });
+  });
+  });
+
+
+
+</script>

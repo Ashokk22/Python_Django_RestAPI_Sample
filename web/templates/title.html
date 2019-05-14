@@ -1,0 +1,38 @@
+{% include "_header.html" with title="Person" parent_link="home" %}
+
+<div class="row">
+  <div class="col-l-12">
+    <h3>
+      {{ original_name }}
+    </h3>
+    <p>
+      Adult:
+      {% if is_adult %}
+      Yes
+      {% else %}
+      No
+      {% endif %}
+    </p>
+    <p>
+      Year: {{ start_year }}
+      {% if end_year %}
+      - {{ end_year }}
+      {% endif %}
+    </p>
+    <p>
+      Runtime (in minutes): {{ runtime }}
+    </p>
+    <div>
+      <h4>Genre</h4>
+    </div>
+    <p>
+    <ul>
+      {% for g in genres %}
+      <li>
+        {{g.name}}
+      </li>
+      {% endfor %}
+    </ul>
+    </p>
+  </div>
+</div>
